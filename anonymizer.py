@@ -7,6 +7,7 @@ run mondrian with given parameters
 from mondrian import mondrian
 from utils.read_adult_data import read_data as read_adult
 from utils.read_informs_data import read_data as read_informs
+from utils.read_registration_data import read_data as read_registration
 import sys, copy, random
 
 DATA_SELECT = 'a'
@@ -166,6 +167,9 @@ if __name__ == '__main__':
     if DATA_SELECT == 'i':
         print("INFORMS data")
         DATA = read_informs()
+    elif DATA_SELECT == 'r':
+        print("REGISTRATION data")
+        DATA, INTUITIVE_ORDER = read_registration()
     else:
         print("Adult data")
         # INTUITIVE_ORDER is an intuitive order for
@@ -188,9 +192,9 @@ if __name__ == '__main__':
             INPUT_K = int(FLAG)
             get_result_one(DATA, INPUT_K)
         except ValueError:
-            print("Usage: python anonymizer [r|s] [a | i] [k | qi | data]")
+            print("Usage: python anonymizer [r|s] [a | i | r] [k | qi | data]")
             print("r: relax mondrian, s: strict mondrian")
-            print("a: adult dataset, i: INFORMS dataset")
+            print("a: adult dataset, i: INFORMS dataset, r: REGISTRATION dataset")
             print("k: varying k")
             print("qi: varying qi numbers")
             print("data: varying size of dataset")
